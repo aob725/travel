@@ -1,10 +1,6 @@
 from django.db import models
 import re, bcrypt
-from django.utils import timezone
-from datetime import datetime, time
-from dateutil import parser
-from django.db.models.functions import Now
-import datetime
+from datetime import datetime
 
 class LoginManager(models.Manager):
 
@@ -47,6 +43,9 @@ class tripManager(models.Manager):
             errors['endlength'] = "End date required"
         if postData['travelstart'] > postData['travelend']:
             errors['travelback'] = "Starting time must be before end"
+        today = datetime.today().strftime('%Y-%m-%d')
+        if postData['travelstart'] < today:
+            errors['invalidstartdate'] = "Start date cannot be before today"
         
         return errors
 

@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Destination</title>
+    <style>
+
+        #header {
+            color: whitesmoke;
+            background-color: grey;
+            width: 200px;
+            text-align: center;
+        }
+        
+        .link {
+            color: black;
+        }
+
+    </style>
 </head>
 <body>
-    <a href="/logout">Logout</a>
-    <a href="/travels">Home</a>
-    <h1>{{tripinfo.destination}}</h1>
+    <a href="/logout" class="link">Logout</a>
+    <a href="/travels" class="link">Home</a>
+    <h1 id="header">{{tripinfo.destination}}</h1>
     <p>Planned by: {{tripinfo.uploader.name}}</p>
     <p>Travel Date From: {{tripinfo.travelstart}}</p>
     <p>Travel Date To: {{tripinfo.travelend}}</p>
