@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Dashboard</title>
+    <title>Search...</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-
 <body>
-    <div class="wrapper" style="width: 90%; margin: 0 auto">
+    <div class="wrapper" style="width: 90%; margin: 0 auto;">
         <div class="nav-bar">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <a class="navbar-brand" href="/travels">Travel Buddy</a>
@@ -18,7 +16,7 @@
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            
+        
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
@@ -38,31 +36,6 @@
                 </div>
             </nav>
         </div>
-        <div class="logout">
-            <a href="/logout" style="float: right; margin-top: 1%; text-decoration: none;">Logout</a>
-        </div>
-        <h4 class="display-4 text-center" style="margin-top: 1%;">Your Trip Schedules</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Destination</th>
-                    <th>Travel Start Date</th>
-                    <th>Travel End Date</th>
-                    <th>Plan</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for trip in mytrips %}
-                <tr>
-                    <td class="text-capitalize"><a href="/travels/destination/{{trip.id}}">{{trip.destination}}</a></td>
-                    <td>{{trip.travelstart}}</td>
-                    <td>{{trip.travelend}}</td>
-                    <td class="text-capitalize">{{trip.description}}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <h4 class="display-4 text-center">Other Users' Travel Plans</h4>
         <table class="table">
             <thead>
                 <tr>
@@ -74,7 +47,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for trip in notmytrips %}
+                {% for trip in trips %}
                 <tr>
                     <td class="text-capitalize">{{trip.uploader.name}}</td>
                     <td class="text-capitalize"><a href="/travels/destination/{{trip.id}}">{{trip.destination}}</a></td>
@@ -85,12 +58,6 @@
                 {% endfor %}
             </tbody>
         </table>
-        
-        <div class="add-trip-button" style="width: 30%; margin: 0% auto 5% auto ;">
-            <a href="/travels/add" style="text-decoration: none;"><button type="button" class="btn btn-success btn-lg btn-block">Add a Trip</button></a>
-        </div>
     </div>
-    
 </body>
-
 </html>

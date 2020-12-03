@@ -17,4 +17,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('travel_buddy_app.urls')),
+
 ]

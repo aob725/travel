@@ -4,23 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Plan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-    <a href="/logout">Logout</a>
-    <a href="/travels">Home</a>
-    <h1>Add a Trip</h1>
-    {% if messages %}
+    <div class="wrapper" style="width: 90%; margin: 0 auto;">
+        <div class="nav-bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Travel Buddy</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/travels">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Welcome, {{loggedinUser.name}}!</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </div>
+        <div class="logout">
+            <a href="/logout" style="float: right; margin-top: 1%; text-decoration: none;">Logout</a>
+        </div>
+        <h1 class="display-4 text-center">Add a Trip</h1>
+        {% if messages %}
         {% for message in messages %}
         <p style="color: red">{{message}}</p>
         {% endfor %}
-    {% endif %}
-    <form action="/addtrip" method="POST">
-        {% csrf_token %}
-        <p>Destination: <input type="text" name="destination" id=""></p>
-        <p>Description: <input type="text" name="description" id=""></p>
-        <p>Travel Date From: <input type="date" name="travelstart" id=""></p>
-        <p>Travel Date To: <input type="date" name="travelend" id=""></p>
-        <input type="submit" value="Add">
-    </form>
+        {% endif %}
+        <div class="trip-form" style="width: 80%; margin: 0 auto">
+            <form action="/addtrip" method="POST">
+                {% csrf_token %}
+                <div class="form-group" style="display: inline-block; width: 45%; margin-left: 3% ;">
+                    <label for="destination">Destination: </label>
+                    <input type="text" class="form-control" name="destination" id="">
+                </div>
+                <div class="form-group" style="display: inline-block; width: 45%; margin-right: 3%; vertical-align: top;">
+                    <label for="description" >Description: </label>
+                    <textarea class="form-control" name="description" cols="19" rows=2></textarea>
+                </div>
+                <div class="form-group" style="display: inline-block; width: 45%; margin-left: 3% ;">
+                    <label for="travelstart">Start: </label>
+                    <input type="date" class="form-control" name="travelstart" id="">
+                </div>
+                <div class="form-group" style="display: inline-block; width: 45%; margin-right: 3%;">
+                    <label for="travelend">End: </label>
+                    <input type="date" class="form-control" name="travelend" id="">
+                </div>
+                <div class="add-trip-button" style="width: 30%; margin: 0% auto 5% auto ;">
+                    <a href="/travels/add" style="text-decoration: none;"><button type="submit"
+                            class="btn btn-success btn-lg btn-block">Add</button></a>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

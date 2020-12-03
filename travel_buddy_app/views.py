@@ -12,7 +12,7 @@ def register(request):
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('/main')
+        return redirect('/')
     hashedpw = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
 
     newuser = User.objects.create(name = request.POST['name'], username = request.POST['username'], password = hashedpw)
@@ -21,7 +21,7 @@ def register(request):
 
 def travels(request):
     if 'loggedinId' not in request.session:
-        return redirect('/main')
+        return redirect('/')
     alltrips = Trip.objects.all()
     loggedinuser = User.objects.get(id = request.session['loggedinId'])
     context = {
@@ -33,14 +33,14 @@ def travels(request):
 
 def logout(request):
     request.session.clear()
-    return redirect('/main')
+    return redirect('/')
 
 def login(request):
     errors = User.objects.loginValidator(request.POST)
     if len(errors) > 0:
         for key, value in errors.items():
             messages.error(request, value)
-        return redirect('/main')
+        return redirect('/')
     
     user = User.objects.get(username = request.POST['username'])
     request.session['loggedinId'] = user.id
@@ -65,6 +65,7 @@ def createTrip(request):
 def viewDest(request, tripid):
     alltrips = Trip.objects.all()
     tripToView = Trip.objects.get(id = tripid)
+    # Google Maps API goes here, pass it through to context
     context = {
         'users': Trip.objects.get(id=tripid),
         'trips': alltrips,
@@ -77,3 +78,14 @@ def addTraveler(request, tripid):
     trip = Trip.objects.get(id= tripid)
     trip.joiner.add(loggedinuser)
     return redirect('/travels')
+
+def search(request):
+    loggedinuser = User.objects.get(id= request.session['loggedinId'])
+    if request.method == 'GET':
+        search = request.GET.get('search')
+        trips = Trip.objects.all().filter(destination__contains = search)
+        context = {
+            'trips' : trips,
+            'loggedinuser' : loggedinuser,
+        }
+        return render(request, 'search.html', context)

@@ -1,40 +1,72 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Registration</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1>Welcome!</h1>
-    <div id="register">
-        {% if messages %}
-            {% for message in messages %}
-            <p style="color: red">{{message}}</p>
-            {% endfor %}
-        {% endif %}    
-        <h3>Register</h3>
-        <form action="/register" method="POST">
-            {% csrf_token %}
-            <p>Name <input type="text" name="name" id=""></p>
-            <p>Username <input type="text" name="username"></p>
-            <p>Password <input type="password" name="password" id=""></p>
-            <p>* Password should be at least 8 characters</p>
-            <p>Confirm PW <input type="password" name="cpassword" id=""></p>
-            <p><input type="submit" value="Register"></p>
-        </form>
+    <div class="wrapper" style="width: 90%; margin: 0 auto;">
+        <div class="jumbotron text-center">
+            <h1 class="display-3">Welcome!</h1>
+            <h5 class="font-weight-light">Login and Register below</h5>
+        </div>
+
+        <div class="login-reg">
+            
+            <div id="login" style="display: inline-block; margin-left: 4%; margin-right: auto; vertical-align: top; width: 40%; float: left;">
+                <h3 class="text-center font-weight-normal">Login</h3>
+                <form action="/login" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="font-weight-light">Username</label>
+                        <input type="text" class="form-control" name="username" id="">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-light">Password</label>
+                        <input type="text" class="form-control" name="password" id="">
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block">Login</button>
+                </form>
+            </div>
+            <div id="register" style="margin-left: auto; margin-right: 4%; width: 40%; display: inline-block; float: right; margin-bottom: 10%;">
+                {% if messages %}
+                {% for message in messages %}
+                <p style="color: red">{{message}}</p>
+                {% endfor %}
+                {% endif %}
+                <h3 class="text-center font-weight-normal">Register</h3>
+                <form action="/register" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="font-weight-light">Name</label>
+                        <input type="text" class="form-control" name="name" id="">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-light">Username</label>
+                        <input type="text" class="form-control" name="username" id="">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-light">Password</label>
+                        <input type="text" class="form-control" name="password" id="">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-light">Confirm Password</label>
+                        <input type="text" class="form-control" name="cpassword" id="">
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block">Register</button>
+                </form>
+            </div>
+        </div>
+        
+        
     </div>
-    <div id="login">
-        <h3>Login</h3>
-        <form action="/login" method="POST">
-            {% csrf_token %}
-            <p>Username <input type="text" name="username"></p>
-            <p>Password <input type="password" name="password" id=""></p>
-            <p><input type="submit" value="Login"></p>
-        </form>
-    </div>
+    
 
 </body>
 
