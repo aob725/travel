@@ -62,7 +62,7 @@ class User(models.Model):
 
 class Trip(models.Model):
     destination = models.CharField(max_length = 255)
-    country = models.CharField(max_length = 255)
+    country = models.CharField(max_length = 255, null=True)
     description = models.CharField(max_length = 255)
     joiner = models.ManyToManyField(User, related_name='join_trip')
     uploader = models.ForeignKey(User, related_name='trips', on_delete = models.CASCADE)

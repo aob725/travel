@@ -45,19 +45,19 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Destination</th>
+                    <th>City/Town</th>
+                    <th>Country</th>
                     <th>Travel Start Date</th>
                     <th>Travel End Date</th>
-                    <th>Plan</th>
                 </tr>
             </thead>
             <tbody>
                 {% for trip in mytrips %}
                 <tr>
                     <td class="text-capitalize"><a href="/travels/destination/{{trip.id}}">{{trip.destination}}</a></td>
+                    <td class="text-capitalize">{{trip.country}}</td>
                     <td>{{trip.travelstart}}</td>
                     <td>{{trip.travelend}}</td>
-                    <td class="text-capitalize">{{trip.description}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

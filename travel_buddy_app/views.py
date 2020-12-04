@@ -59,7 +59,7 @@ def createTrip(request):
 
     loggedinuser = User.objects.get(id = request.session['loggedinId'])
 
-    newtrip = Trip.objects.create(destination = request.POST['destination'], description = request.POST['description'], travelstart = request.POST['travelstart'], travelend = request.POST['travelend'], uploader = loggedinuser)
+    newtrip = Trip.objects.create(destination = request.POST['destination'], country = request.POST['country'], description = request.POST['description'], travelstart = request.POST['travelstart'], travelend = request.POST['travelend'], uploader = loggedinuser)
     return redirect('/travels')
 
 def viewDest(request, tripid):
