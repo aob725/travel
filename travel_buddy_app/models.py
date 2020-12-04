@@ -35,6 +35,8 @@ class tripManager(models.Manager):
         errors = {}
         if len(postData['destination']) == 0:
             errors['destlength'] = "Destination cannot be empty"
+        if len(postData['country']) == 0:
+            errors['country'] = "Country cannot be empty"
         if len(postData['description']) == 0:
             errors['desclength'] = "Description cannot be empty"
         if len(postData['travelstart']) == 0:
@@ -60,6 +62,7 @@ class User(models.Model):
 
 class Trip(models.Model):
     destination = models.CharField(max_length = 255)
+    country = models.CharField(max_length = 255)
     description = models.CharField(max_length = 255)
     joiner = models.ManyToManyField(User, related_name='join_trip')
     uploader = models.ForeignKey(User, related_name='trips', on_delete = models.CASCADE)

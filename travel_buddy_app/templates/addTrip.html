@@ -49,10 +49,14 @@
             <form action="/addtrip" method="POST">
                 {% csrf_token %}
                 <div class="form-group" style="display: inline-block; width: 45%; margin-left: 3% ;">
-                    <label for="destination">Destination: </label>
+                    <label for="destination">City/Town: </label>
                     <input type="text" class="form-control" name="destination" id="">
                 </div>
-                <div class="form-group" style="display: inline-block; width: 45%; margin-right: 3%; vertical-align: top;">
+                <div class="form-group" style="display: inline-block; width: 45%; margin-left: 3% ;">
+                    <label for="destination">Country: </label>
+                    <input type="text" class="form-control" name="country" id="">
+                </div>
+                <div class="form-group" style="display: inline-block; width: 93.5%; margin-left: 3% ; vertical-align: top;">
                     <label for="description" >Description: </label>
                     <textarea class="form-control" name="description" cols="19" rows=2></textarea>
                 </div>
@@ -60,7 +64,7 @@
                     <label for="travelstart">Start: </label>
                     <input type="date" class="form-control" name="travelstart" id="">
                 </div>
-                <div class="form-group" style="display: inline-block; width: 45%; margin-right: 3%;">
+                <div class="form-group" style="display: inline-block; width: 45%; margin-left: 3%;">
                     <label for="travelend">End: </label>
                     <input type="date" class="form-control" name="travelend" id="">
                 </div>
